@@ -1,3 +1,5 @@
 {
-  "marquee.widgets.npm-stats.packageNames": ["gad-tests"]
+  "marquee.widgets.npm-stats.packageNames": ["gad-tests"],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
