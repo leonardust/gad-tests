@@ -41,4 +41,40 @@ Run all test without tags:
 npx playwright test --grep-invert "@GAD-R01-02"
 ```
 
+Run tests with tags containing “@GAD-R01-01” lub “@GAD-R01-02”:
+
+```
+npx playwright test --grep "@GAD-R01-01|@GAD-R01-02"
+```
+
+Run test containing multiple tags
+
+```
+npx playwright test --grep "(?=._@fast)(?=._@slow)"
+```
+
+Windows
+
+Run tests with tags containing “@GAD-R01-01” lub “@GAD-R01-02”
+
+CMD
+
+```
+npx playwright test --grep "@GAD-R01-01^|@GAD-R01-02"
+```
+
+PowerShell
+
+```
+npx playwright test --grep --% "@GAD-R01-01^|@GAD-R01-02"
+```
+
 For more usage cases look in `package.json` scripts section.
+
+```
+
+```
+
+```
+
+```
