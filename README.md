@@ -55,6 +55,12 @@ Run test containing multiple tags
 npx playwright test --grep "(?=._@fast)(?=._@slow)"
 ```
 
+Run the same test many times
+
+```
+npx playwright test --grep "@GAD-R03-01" --repeat-each=5
+```
+
 Windows
 
 Run tests with tags containing “@GAD-R01-01” lub “@GAD-R01-02”

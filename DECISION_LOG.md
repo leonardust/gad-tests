@@ -1,6 +1,13 @@
 # This file contain concept decisions for GAD automation framework
 
-## Integration of code style tools in framework
+# Table of Contents
+
+1. Integration of code style tools in framework
+2. Use of dotenv in automated tests
+3. Use of design patterns like POM, AAA, and composition
+4. Use of faker in automated tests
+
+## Integration of code style tools in framework <a id="integration-of-code-style-tools-in-framework"></a>
 
 **ID**: 001  
 **Status**: Decided  
@@ -23,5 +30,64 @@ We need static code analysis tools for:
 **Cons**: New tools add more complexity to solution and require maintenance
 
 **Decision**: Use Prettier, ESLint and Husky to provide hight code standard across framework
+
+**Creator**: Przemek B
+
+## Use of dotenv in automated tests <a id="use-of-dotenv-in-automated-tests"></a>
+
+**ID**: 002  
+**Status**: Decided  
+**Date**: 2023/07/12  
+**Context**:
+
+**Proposed solution**
+
+- **Pros**:
+
+  **Cons**:
+
+  **Decision**:
+
+  **Creator**: Przemek B
+
+## Use of design patterns like POM, AAA, and composition <a id="use-of-design-patterns-like-pom-aaa-and-composition"></a>
+
+**ID**: 003  
+**Status**: Decided  
+**Date**: 2023/07/12  
+**Context**:
+
+**Proposed solution**
+
+**Pros**:
+
+**Cons**:
+
+**Decision**:
+
+**Creator**: Przemek B
+
+## Use of faker in automated tests <a id="use-of-faker-in-automated-tests"></a>
+
+**ID**: 004
+**Status**: Decided
+**Date**: 2023/07/26
+**Context**: In our automated tests, we often encounter the need to populate test data with realistic but randomized values, such as names, addresses, dates, and other user-specific information.
+
+**Proposed solution**: Integrate the 'faker' library into our automated tests to generate realistic and randomized test data.
+
+**Pros**:
+
+- Realistic test data - The 'faker' library provides a wide range of data generation options, allowing us to create diverse and realistic test scenarios.
+- Time-saving - Automating the data generation process with 'faker' significantly reduces the time spent on writing and maintaining test data setup.
+- Increased test coverage - By using 'faker,' we can easily create various data combinations, enhancing our test suite's coverage.
+
+**Cons**:
+
+- Dependency management - We need to ensure that the 'faker' library is correctly installed and managed across our test environments.
+- Slower tests - Adding faker slows down test by additional logic and abstraction.
+- Random Data Challenges - Random data produced by faker, in some cases can be inappropriate for our needs, that force additional effort to customize faker outputs.
+
+**Decision**: Decided.
 
 **Creator**: Przemek B
