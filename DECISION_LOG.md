@@ -6,6 +6,7 @@
 2. Use of dotenv in automated tests
 3. Use of design patterns like POM, AAA, and composition
 4. Use of faker in automated tests
+5. Use of models in automated tests
 
 ## Integration of code style tools in framework <a id="integration-of-code-style-tools-in-framework"></a>
 
@@ -87,6 +88,29 @@ We need static code analysis tools for:
 - Dependency management - We need to ensure that the 'faker' library is correctly installed and managed across our test environments.
 - Slower tests - Adding faker slows down test by additional logic and abstraction.
 - Random Data Challenges - Random data produced by faker, in some cases can be inappropriate for our needs, that force additional effort to customize faker outputs.
+
+**Decision**: Decided.
+
+**Creator**: Przemek B
+
+## Use of models in automated tests <a id="use-of-models-in-automated-tests"></a>
+
+**ID**: 005
+**Status**: Decided
+**Date**: 2023/07/26
+**Context**: In our automated tests, we need to better manage our test data in context of user registration
+
+**Proposed solution**: Introduce user.model as representation of data structure.
+
+**Pros**:
+
+- Aggregation of various data in a single object
+- Easier data passing to functions (only one object that contains all the data)
+- Protection against potential errors if certain values are forgotten
+
+**Cons**:
+
+- Requires careful consideration of interfaces to avoid code duplication.
 
 **Decision**: Decided.
 
