@@ -7,6 +7,7 @@
 3. Use of design patterns like POM, AAA, and composition
 4. Use of faker in automated tests
 5. Use of models in automated tests
+6. Use of factory in automated tests
 
 ## Integration of code style tools in framework <a id="integration-of-code-style-tools-in-framework"></a>
 
@@ -111,6 +112,30 @@ We need static code analysis tools for:
 **Cons**:
 
 - Requires careful consideration of interfaces to avoid code duplication.
+
+**Decision**: Decided.
+
+**Creator**: Przemek B
+
+## Use of factory in automated tests <a id="use-of-factory-in-automated-tests"></a>
+
+**ID**: 006
+**Status**: Decided
+**Date**: 2023/07/26
+**Context**: In our automated tests, we need to better manage our test data.
+
+**Proposed solution**: Move creation user data logic from tests to factory.
+
+**Pros**:
+
+- Separation of concerns – the pattern allows you to separate the process of creating objects from their actual usage. This way, you can focus on how to use the objects, rather than how they are created.
+- Ease of making changes – when the way an object is created changes, you only need to update it in one place, without modifying code in multiple locations.
+- Increased readability – objects are created in one place (in the factory). As a result, the code that creates objects is more organized and readable.
+
+**Cons**:
+
+- Increased complexity – introduces a new layer of abstraction, which can make the code slightly more complicated, especially in simple tests.
+- Higher initial effort – creating the factory class and specific model classes may require more work upfront compared to creating objects directly.
 
 **Decision**: Decided.
 
