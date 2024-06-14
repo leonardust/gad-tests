@@ -8,6 +8,7 @@
 4. Use of faker in automated tests
 5. Use of models in automated tests
 6. Use of factory in automated tests
+7. Introduce view in automated test architecture
 
 ## Integration of code style tools in framework <a id="integration-of-code-style-tools-in-framework"></a>
 
@@ -136,6 +137,23 @@ We need static code analysis tools for:
 
 - Increased complexity – introduces a new layer of abstraction, which can make the code slightly more complicated, especially in simple tests.
 - Higher initial effort – creating the factory class and specific model classes may require more work upfront compared to creating objects directly.
+
+**Decision**: Decided.
+
+**Creator**: Przemek B
+
+**ID**: 007
+**Status**: Decided
+**Date**: 2023/07/26
+**Context**: Some pages in our app have the same url but different content and structure
+
+**Proposed solution**: Introduce view as element with different content but the same url.
+
+**Pros**:
+
+- Better orientation which app pages are accessible by url address (pages) and which only by interaction with elements (views).
+
+**Cons**:
 
 **Decision**: Decided.
 
