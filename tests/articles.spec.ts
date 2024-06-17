@@ -1,4 +1,5 @@
 import { randomNewArticle } from '../src/factories/article.factory';
+import { AddArticleModel } from '../src/models/article.model';
 import { ArticlePage } from '../src/pages/article.page';
 import { ArticlesPage } from '../src/pages/articles.page';
 import { LoginPage } from '../src/pages/login.page';
@@ -7,71 +8,58 @@ import { AddArticleView } from '../src/views/add-article.view';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify articles', () => {
-  const emptyString = '';
-  const expectedErrorMessage = 'Article was not created';
+  let loginPage: LoginPage;
+  let articlesPage: ArticlesPage;
+  let addArticleView: AddArticleView;
+  let articleData: AddArticleModel;
+
+  test.beforeEach(async ({ page }) => {
+    loginPage = new LoginPage(page);
+    articlesPage = new ArticlesPage(page);
+    addArticleView = new AddArticleView(page);
+
+    await loginPage.goTo();
+    await loginPage.login(testUser1);
+    await articlesPage.goTo();
+    await articlesPage.addArticleButtonLogged.click();
+
+    articleData = randomNewArticle();
+
+    await expect.soft(addArticleView.header).toBeVisible();
+  });
 
   test('create new article @GAD-R04-01', async ({ page }) => {
     // Arrange
-    const loginPage = new LoginPage(page);
-    await loginPage.goTo();
-    await loginPage.login(testUser1);
-
-    const articlesPage = new ArticlesPage(page);
-    await articlesPage.goTo();
+    const articlePage = new ArticlePage(page);
 
     // Act
-    await articlesPage.addArticleButtonLogged.click();
-
-    const addArticleView = new AddArticleView(page);
-    await expect.soft(addArticleView.header).toBeVisible();
-
-    const articleData = randomNewArticle();
     await addArticleView.createArticle(articleData);
 
     //Assert
-    const articlePage = new ArticlePage(page);
     await expect.soft(articlePage.articleTitle).toHaveText(articleData.title);
     await expect
       .soft(articlePage.articleBody)
       .toHaveText(articleData.body, { useInnerText: true });
   });
 
-  test('reject creating article without title', async ({ page }) => {
+  test('reject creating article without title', async () => {
     // Arrange
-    const loginPage = new LoginPage(page);
-    const articlesPage = new ArticlesPage(page);
-    const addArticleView = new AddArticleView(page);
-
-    const articleData = randomNewArticle();
-    articleData.title = emptyString;
-
-    await loginPage.goTo();
-    await loginPage.login(testUser1);
-    await articlesPage.goTo();
+    const expectedErrorMessage = 'Article was not created';
+    articleData.title = '';
 
     // Act
-    await articlesPage.addArticleButtonLogged.click();
     await addArticleView.createArticle(articleData);
 
     //Assert
     await expect(addArticleView.alertPopup).toHaveText(expectedErrorMessage);
   });
 
-  test('reject creating article without body', async ({ page }) => {
+  test('reject creating article without body', async () => {
     // Arrange
-    const loginPage = new LoginPage(page);
-    const articlesPage = new ArticlesPage(page);
-    const addArticleView = new AddArticleView(page);
-
-    const articleData = randomNewArticle();
-    articleData.body = emptyString;
-
-    await loginPage.goTo();
-    await loginPage.login(testUser1);
-    await articlesPage.goTo();
+    const expectedErrorMessage = 'Article was not created';
+    articleData.body = '';
 
     // Act
-    await articlesPage.addArticleButtonLogged.click();
     await addArticleView.createArticle(articleData);
 
     //Assert
