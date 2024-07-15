@@ -47,7 +47,7 @@ test.describe('Create and verify article', () => {
     await articlesPage.goToArticle(articleData.title);
 
     // Assert
-    await expect.soft(articlePage.articleTitle).toHaveText('dupa');
+    await expect.soft(articlePage.articleTitle).toHaveText(articleData.title);
     await expect
       .soft(articlePage.articleBody)
       .toHaveText(articleData.body, { useInnerText: true });
