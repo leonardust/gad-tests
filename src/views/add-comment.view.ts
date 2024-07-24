@@ -1,3 +1,4 @@
+import { AddCommentModel } from '../models/comment.model';
 import { Page } from '@playwright/test';
 
 export class AddCommentView {
@@ -7,4 +8,9 @@ export class AddCommentView {
   alertPopup = this.page.getByTestId('alert-popup');
 
   constructor(private page: Page) {}
+
+  async createComment(commentData: AddCommentModel): Promise<void> {
+    await this.bodyInput.fill(commentData.body);
+    await this.saveButton.click();
+  }
 }
