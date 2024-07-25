@@ -1,5 +1,5 @@
-import { BASE_URL } from './src/env.config';
 import { defineConfig, devices } from '@playwright/test';
+import { BASE_URL } from 'config/env.config';
 
 import path = require('path');
 
@@ -11,7 +11,7 @@ export const STORAGE_STATE = path.join(__dirname, 'tmp/session.json');
 
 export default defineConfig({
   testDir: './tests',
-  globalSetup: 'src/global-setup.ts',
+  globalSetup: 'config/global.setup.ts',
   timeout: 60_000,
   expect: { timeout: 10_000 },
   fullyParallel: true,
@@ -33,7 +33,7 @@ export default defineConfig({
     },
     {
       name: 'setup',
-      testMatch: '**.setup.ts',
+      testMatch: '*.setup.ts',
     },
     {
       name: 'chromium-logged',
