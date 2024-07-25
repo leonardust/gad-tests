@@ -19,6 +19,7 @@
     "@typescript-eslint/explicit-function-return-type": "error",
     "no-console": "warn",
     "playwright/no-nested-step": "off",
+    "playwright/no-standalone-expect": "off",
     "prettier/prettier": "warn"
   }
 }
