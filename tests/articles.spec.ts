@@ -24,7 +24,7 @@ test.describe('Verify articles', () => {
     await expect.soft(addArticleView.addNewHeader).toBeVisible();
   });
 
-  test('reject creating article without title', async () => {
+  test('reject creating article without title @GAD-R04-01 @logged', async () => {
     // Arrange
     const expectedErrorMessage = 'Article was not created';
     const articleData = prepareRandomNewArticle();
@@ -37,7 +37,7 @@ test.describe('Verify articles', () => {
     await expect(addArticleView.alertPopup).toHaveText(expectedErrorMessage);
   });
 
-  test('reject creating article without body', async () => {
+  test('reject creating article without body @GAD-R04-01', async () => {
     // Arrange
     const expectedErrorMessage = 'Article was not created';
     const articleData = prepareRandomNewArticle();
