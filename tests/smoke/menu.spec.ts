@@ -10,12 +10,10 @@ test.describe('Verify main buttons', () => {
     // Arrange
     const expectedCommentsTitle = 'Comments';
     const articlesPage = new ArticlesPage(page);
-    const commentsPage = new CommentsPage(page);
 
     // Act
     await articlesPage.goTo();
-    await articlesPage.mainMenu.commentsButton.click();
-
+    const commentsPage = await articlesPage.mainMenu.clicksCommentButton();
     const title = await commentsPage.getTitle();
 
     // Assert
