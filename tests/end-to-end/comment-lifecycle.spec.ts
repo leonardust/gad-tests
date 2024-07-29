@@ -7,12 +7,11 @@ import { ArticlesPage } from '@_src/pages/articles.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Create, verify and delete comment', () => {
-  let articlesPage: ArticlesPage;
   let articleData: AddArticleModel;
   let articlePage: ArticlePage;
 
   test.beforeEach(async ({ page }) => {
-    articlesPage = new ArticlesPage(page);
+    const articlesPage = new ArticlesPage(page);
     articleData = prepareRandomNewArticle();
 
     await articlesPage.goTo();
