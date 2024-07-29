@@ -1,42 +1,27 @@
-import { ArticlesPage } from '@_src/pages/articles.page';
-import { CommentsPage } from '@_src/pages/comments.page';
-import { HomePage } from '@_src/pages/home.page';
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@_src/fixtures/merge.fixture';
 
 test.describe('Verify service main page', () => {
-  test('home page title @GAD-R01-01', async ({ page }) => {
+  test('home page title @GAD-R01-01', async ({ homePage }) => {
     // Arrange
     const expectedHomePageTitle = 'GAD';
-    const homePage = new HomePage(page);
-
-    // Act
-    await homePage.goTo();
 
     // Assert
     const title = await homePage.getTitle();
     expect(title).toContain(expectedHomePageTitle);
   });
 
-  test('articles page title @GAD-R01-02', async ({ page }) => {
+  test('articles page title @GAD-R01-02', async ({ articlesPage }) => {
     // Arrange
     const expectedArticlesTitle = 'Articles';
-    const articlesPage = new ArticlesPage(page);
-
-    // Act
-    await articlesPage.goTo();
 
     // Assert
     const title = await articlesPage.getTitle();
     expect(title).toContain(expectedArticlesTitle);
   });
 
-  test('comments page title @GAD-R01-02', async ({ page }) => {
+  test('comments page title @GAD-R01-02', async ({ commentsPage }) => {
     // Arrange
     const expectedArticlesTitle = 'Comments';
-    const commentsPage = new CommentsPage(page);
-
-    // Act
-    await commentsPage.goTo();
 
     // Assert
     const title = await commentsPage.getTitle();
