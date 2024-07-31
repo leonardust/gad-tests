@@ -5,8 +5,7 @@ test.describe('Verify article', () => {
     articlePage,
   }) => {
     // Arrange
-    const expectedArticleTitle =
-      'Cultivating a Growth Mindset in the IT Workplace';
+    const expectedArticleTitle = 'How to write effective test cases';
 
     // Act
     await articlePage.goTo('?id=1');
