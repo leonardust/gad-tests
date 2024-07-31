@@ -8,6 +8,7 @@ import path = require('path');
  */
 
 export const STORAGE_STATE = path.join(__dirname, 'tmp/session.json');
+export const RESPONSE_TIMEOUT = 10_000;
 
 export default defineConfig({
   testDir: './tests',
