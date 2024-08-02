@@ -12,7 +12,7 @@ test.describe('Verify articles', () => {
     const expectedResponseCode = 422;
     const articleData = prepareRandomNewArticle();
     articleData.title = '';
-    const responsePromise = waitForResponse(page, '/api/articles');
+    const responsePromise = waitForResponse({ page, url: '/api/articles' });
 
     // Act
     await addArticleView.createArticle(articleData);
@@ -32,7 +32,7 @@ test.describe('Verify articles', () => {
     const expectedErrorMessage = 'Article was not created';
     const articleData = prepareRandomNewArticle();
     articleData.body = '';
-    const responsePromise = waitForResponse(page, '/api/articles');
+    const responsePromise = waitForResponse({ page, url: '/api/articles' });
 
     // Act
     await addArticleView.createArticle(articleData);
@@ -52,7 +52,7 @@ test.describe('Verify articles', () => {
       const expectedResponseCode = 422;
       const expectedErrorMessage = 'Article was not created';
       const articleData = prepareRandomNewArticle(129);
-      const responsePromise = waitForResponse(page, '/api/articles');
+      const responsePromise = waitForResponse({ page, url: '/api/articles' });
 
       // Act
       await addArticleView.createArticle(articleData);
@@ -69,7 +69,12 @@ test.describe('Verify articles', () => {
     }) => {
       // Arrange
       const articleData = prepareRandomNewArticle();
-      const responsePromise = waitForResponse(page, '/api/articles', 'GET');
+      const responsePromise = waitForResponse({
+        page,
+        url: '/api/articles',
+        method: 'GET',
+        text: articleData.title,
+      });
 
       // Act
       const articlePage = await addArticleView.createArticle(articleData);
