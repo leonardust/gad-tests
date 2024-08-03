@@ -1,39 +1,83 @@
 import { expect, test } from '@_src/fixtures/merge.fixture';
 
 test.describe('Verify articles API endpoint @GAD-R08-01 @api', () => {
-  test('GET articles return status code 200', async ({ request }) => {
-    // Arrange
-    const expectedResponseCode = 200;
-    const articlesUrl = '/api/articles';
+  test.describe('Verify articles API endpoint @GAD-R08-01 @api', () => {
+    test('GET articles return status code 200', async ({ request }) => {
+      // Arrange
+      const expectedResponseCode = 200;
+      const articlesUrl = '/api/articles';
 
-    // Act
-    const response = await request.get(articlesUrl);
+      // Act
+      const response = await request.get(articlesUrl);
 
-    // Assert
-    expect(response.status()).toBe(expectedResponseCode);
+      // Assert
+      expect(response.status()).toBe(expectedResponseCode);
+    });
+
+    test('GET articles should return at least one article @predefined_data', async ({
+      request,
+    }) => {
+      // Arrange
+      const expectedMinArticlesCount = 1;
+      const articlesUrl = '/api/articles';
+
+      // Act
+      const response = await request.get(articlesUrl);
+      const responseJson = await response.json();
+
+      // Assert
+      expect(responseJson.length).toBeGreaterThanOrEqual(
+        expectedMinArticlesCount,
+      );
+    });
+
+    test('GET articles should return article object @predefined_data', async ({
+      request,
+    }) => {
+      // Arrange
+      const expectedRequiredFields = [
+        'id',
+        'user_id',
+        'title',
+        'body',
+        'date',
+        'image',
+      ];
+
+      const articlesUrl = '/api/articles';
+
+      // Act
+      const response = await request.get(articlesUrl);
+      const responseJson = await response.json();
+      const article = responseJson[0];
+
+      // Assert
+      expectedRequiredFields.forEach((key) => {
+        expect.soft(article).toHaveProperty(key);
+      });
+    });
   });
 
-  test('GET articles should return at least one article @predefined_data', async ({
+  test('GET articles should return object with required fields @predefined_data', async ({
     request,
   }) => {
     // Arrange
-    const expectedMinArticlesCount = 1;
     const articlesUrl = '/api/articles';
-
-    // Act
     const response = await request.get(articlesUrl);
+
+    await test.step('GET articles return status code 200', async () => {
+      const expectedResponseCode = 200;
+      expect(response.status()).toBe(expectedResponseCode);
+    });
+
     const responseJson = await response.json();
+    await test.step('GET articles should return at least one article', async () => {
+      const expectedMinArticlesCount = 1;
+      expect(responseJson.length).toBeGreaterThanOrEqual(
+        expectedMinArticlesCount,
+      );
+    });
 
-    // Assert
-    expect(responseJson.length).toBeGreaterThanOrEqual(
-      expectedMinArticlesCount,
-    );
-  });
-
-  test('GET articles should return article object @predefined_data', async ({
-    request,
-  }) => {
-    // Arrange
     const expectedRequiredFields = [
       'id',
       'user_id',
@@ -43,16 +87,11 @@ test.describe('Verify articles API endpoint @GAD-R08-01 @api', () => {
       'image',
     ];
 
-    const articlesUrl = '/api/articles';
-
-    // Act
-    const response = await request.get(articlesUrl);
-    const responseJson = await response.json();
     const article = responseJson[0];
-
-    // Assert
-    expectedRequiredFields.forEach((key) => {
-      expect.soft(article).toHaveProperty(key);
+    expectedRequiredFields.forEach(async (key) => {
+      await test.step(`response object contains required field: ${key}`, async () => {
+        expect.soft(article).toHaveProperty(key);
+      });
     });
   });
 });
