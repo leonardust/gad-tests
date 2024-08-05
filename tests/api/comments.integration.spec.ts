@@ -1,6 +1,9 @@
-import { prepareRandomNewComment } from '@_src/factories/comment.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
-import { getAuthHeader, prepareArticlePayload } from '@_src/utils/api.util';
+import {
+  getAuthHeader,
+  prepareArticlePayload,
+  prepareCommentPayload,
+} from '@_src/utils/api.util';
 
 test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
   let articleId: number;
@@ -29,13 +32,7 @@ test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
     // Arrange
     const expectedResponseCode = 401;
     const commentsUrl = '/api/comments';
-
-    const randomCommentData = prepareRandomNewComment();
-    const commentData = {
-      article_id: articleId,
-      body: randomCommentData.body,
-      date: '2024-08-05T09:11:45.053Z',
-    };
+    const commentData = prepareCommentPayload(articleId);
 
     //Act
     const response = await request.post(commentsUrl, { data: commentData });
@@ -47,17 +44,10 @@ test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
   test('should create an comment with logged-in user', async ({ request }) => {
     // Arrange
     const expectedResponseCode = 201;
+    const commentsUrl = '/api/comments';
+    const commentData = prepareCommentPayload(articleId);
 
     //Act
-    const commentsUrl = '/api/comments';
-
-    const randomCommentData = prepareRandomNewComment();
-    const commentData = {
-      article_id: articleId,
-      body: randomCommentData.body,
-      date: '2024-08-05T09:11:45.053Z',
-    };
-
     const response = await request.post(commentsUrl, {
       headers,
       data: commentData,
