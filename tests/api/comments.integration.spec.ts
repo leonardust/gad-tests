@@ -1,7 +1,7 @@
 import { prepareRandomNewArticle } from '@_src/factories/article.factory';
 import { prepareRandomNewComment } from '@_src/factories/comment.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
-import { testUser1 } from '@_src/test-data/user.data';
+import { getAuthHeader } from '@_src/utils/api.util';
 
 test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
   let articleId: number;
@@ -10,16 +10,7 @@ test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
   };
 
   test.beforeAll('create an article', async ({ request }) => {
-    // Login
-    const loginUrl = '/api/login';
-    const userData = {
-      email: testUser1.userEmail,
-      password: testUser1.userPassword,
-    };
-    const responseLogin = await request.post(loginUrl, {
-      data: userData,
-    });
-    const responseLoginJson = await responseLogin.json();
+    headers = await getAuthHeader(request);
 
     // Create article
     const articlesUrl = '/api/articles';
@@ -30,10 +21,6 @@ test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
       body: randomArticleData.body,
       date: '2024-08-05T09:11:45.053Z',
       image: '.\\data\\images\\256\\chuttersnap-9cCeS9Sg6nU-unsplash.jpg',
-    };
-
-    headers = {
-      Authorization: `Bearer ${responseLoginJson.access_token}`,
     };
 
     const responseArticle = await request.post(articlesUrl, {
