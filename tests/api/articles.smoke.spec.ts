@@ -1,14 +1,14 @@
 import { expect, test } from '@_src/fixtures/merge.fixture';
+import { apiLinks } from '@_src/utils/api.util';
 
 test.describe('Verify articles API endpoint @GAD-R08-01 @smoke', () => {
   test.describe('Verify each condition in separate test', () => {
     test('GET articles return status code 200', async ({ request }) => {
       // Arrange
       const expectedResponseCode = 200;
-      const articlesUrl = '/api/articles';
 
       // Act
-      const response = await request.get(articlesUrl);
+      const response = await request.get(apiLinks.articlesUrl);
 
       // Assert
       expect(response.status()).toBe(expectedResponseCode);
@@ -19,10 +19,9 @@ test.describe('Verify articles API endpoint @GAD-R08-01 @smoke', () => {
     }) => {
       // Arrange
       const expectedMinArticlesCount = 1;
-      const articlesUrl = '/api/articles';
 
       // Act
-      const response = await request.get(articlesUrl);
+      const response = await request.get(apiLinks.articlesUrl);
       const responseJson = await response.json();
 
       // Assert
@@ -44,10 +43,8 @@ test.describe('Verify articles API endpoint @GAD-R08-01 @smoke', () => {
         'image',
       ];
 
-      const articlesUrl = '/api/articles';
-
       // Act
-      const response = await request.get(articlesUrl);
+      const response = await request.get(apiLinks.articlesUrl);
       const responseJson = await response.json();
       const article = responseJson[0];
 
@@ -62,8 +59,8 @@ test.describe('Verify articles API endpoint @GAD-R08-01 @smoke', () => {
     request,
   }) => {
     // Arrange
-    const articlesUrl = '/api/articles';
-    const response = await request.get(articlesUrl);
+
+    const response = await request.get(apiLinks.articlesUrl);
 
     await test.step('GET articles return status code 200', async () => {
       const expectedResponseCode = 200;

@@ -1,5 +1,6 @@
 import { expect, test } from '@_src/fixtures/merge.fixture';
 import {
+  apiLinks,
   getAuthHeader,
   prepareArticlePayload,
   prepareCommentPayload,
@@ -14,10 +15,9 @@ test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
   test.beforeAll('create an article', async ({ request }) => {
     headers = await getAuthHeader(request);
 
-    const articlesUrl = '/api/articles';
     const articleData = prepareArticlePayload();
 
-    const responseArticle = await request.post(articlesUrl, {
+    const responseArticle = await request.post(apiLinks.articlesUrl, {
       headers,
       data: articleData,
     });
@@ -31,11 +31,13 @@ test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
   }) => {
     // Arrange
     const expectedResponseCode = 401;
-    const commentsUrl = '/api/comments';
+
     const commentData = prepareCommentPayload(articleId);
 
     //Act
-    const response = await request.post(commentsUrl, { data: commentData });
+    const response = await request.post(apiLinks.commentsUrl, {
+      data: commentData,
+    });
 
     //Assert
     expect(response.status()).toBe(expectedResponseCode);
@@ -44,11 +46,11 @@ test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
   test('should create an comment with logged-in user', async ({ request }) => {
     // Arrange
     const expectedResponseCode = 201;
-    const commentsUrl = '/api/comments';
+
     const commentData = prepareCommentPayload(articleId);
 
     //Act
-    const response = await request.post(commentsUrl, {
+    const response = await request.post(apiLinks.commentsUrl, {
       headers,
       data: commentData,
     });

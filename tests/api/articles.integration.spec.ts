@@ -1,5 +1,9 @@
 import { expect, test } from '@_src/fixtures/merge.fixture';
-import { getAuthHeader, prepareArticlePayload } from '@_src/utils/api.util';
+import {
+  apiLinks,
+  getAuthHeader,
+  prepareArticlePayload,
+} from '@_src/utils/api.util';
 
 test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
   test('should not create an article without a logged-in user', async ({
@@ -7,11 +11,12 @@ test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
   }) => {
     // Arrange
     const expectedResponseCode = 401;
-    const articlesUrl = '/api/articles';
     const articleData = prepareArticlePayload();
 
     //Act
-    const response = await request.post(articlesUrl, { data: articleData });
+    const response = await request.post(apiLinks.articlesUrl, {
+      data: articleData,
+    });
 
     //Assert
     expect(response.status()).toBe(expectedResponseCode);
@@ -21,11 +26,10 @@ test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
     // Arrange
     const expectedResponseCode = 201;
     const headers = await getAuthHeader(request);
-    const articlesUrl = '/api/articles';
     const articleData = prepareArticlePayload();
 
     //Act
-    const responseArticle = await request.post(articlesUrl, {
+    const responseArticle = await request.post(apiLinks.articlesUrl, {
       headers,
       data: articleData,
     });

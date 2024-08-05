@@ -1,13 +1,14 @@
 import { expect, test } from '@_src/fixtures/merge.fixture';
+import { apiLinks } from '@_src/utils/api.util';
 
 test.describe('Verify comments API endpoint @GAD-R08-02 @smoke', () => {
   test.describe('verify each condition in separate test', () => {
     test('GET comments returns status code 200', async ({ request }) => {
+      // Arrange
       const expectedResponseCode = 200;
-      const commentsUrl = '/api/comments';
 
       // Act
-      const response = await request.get(commentsUrl);
+      const response = await request.get(apiLinks.commentsUrl);
 
       // Assert
       expect(response.status()).toBe(expectedResponseCode);
@@ -18,10 +19,9 @@ test.describe('Verify comments API endpoint @GAD-R08-02 @smoke', () => {
     }) => {
       // Arrange
       const expectedMinCommentsCount = 1;
-      const commentsUrl = '/api/comments';
 
       // Act
-      const response = await request.get(commentsUrl);
+      const response = await request.get(apiLinks.commentsUrl);
       const responseJson = await response.json();
 
       // Assert
@@ -42,10 +42,8 @@ test.describe('Verify comments API endpoint @GAD-R08-02 @smoke', () => {
         'user_id',
       ];
 
-      const commentsUrl = '/api/comments';
-
       // Act
-      const response = await request.get(commentsUrl);
+      const response = await request.get(apiLinks.commentsUrl);
       const responseJson = await response.json();
       const comment = responseJson[0];
 
@@ -65,8 +63,8 @@ test.describe('Verify comments API endpoint @GAD-R08-02 @smoke', () => {
     request,
   }) => {
     // Arrange
-    const commentsUrl = '/api/comments';
-    const response = await request.get(commentsUrl);
+
+    const response = await request.get(apiLinks.commentsUrl);
 
     await test.step('GET comments return status code 200', async () => {
       const expectedResponseCode = 200;
