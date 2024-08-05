@@ -1,6 +1,5 @@
-import { prepareRandomNewArticle } from '@_src/factories/article.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
-import { getAuthHeader } from '@_src/utils/api.util';
+import { getAuthHeader, prepareArticlePayload } from '@_src/utils/api.util';
 
 test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
   test('should not create an article without a logged-in user', async ({
@@ -9,14 +8,7 @@ test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
     // Arrange
     const expectedResponseCode = 401;
     const articlesUrl = '/api/articles';
-
-    const randomArticleData = prepareRandomNewArticle();
-    const articleData = {
-      title: randomArticleData.title,
-      body: randomArticleData.body,
-      date: '2024-08-05T09:11:45.053Z',
-      image: '',
-    };
+    const articleData = prepareArticlePayload();
 
     //Act
     const response = await request.post(articlesUrl, { data: articleData });
@@ -29,18 +21,10 @@ test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
     // Arrange
     const expectedResponseCode = 201;
     const headers = await getAuthHeader(request);
+    const articlesUrl = '/api/articles';
+    const articleData = prepareArticlePayload();
 
     //Act
-    const articlesUrl = '/api/articles';
-
-    const randomArticleData = prepareRandomNewArticle();
-    const articleData = {
-      title: randomArticleData.title,
-      body: randomArticleData.body,
-      date: '2024-08-05T09:11:45.053Z',
-      image: '.\\data\\images\\256\\chuttersnap-9cCeS9Sg6nU-unsplash.jpg',
-    };
-
     const responseArticle = await request.post(articlesUrl, {
       headers,
       data: articleData,
