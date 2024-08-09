@@ -8,8 +8,8 @@ import {
 } from '@_src/utils/api.util';
 import { APIResponse } from '@playwright/test';
 
-test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
-  test('should not create an article without a logged-in user', async ({
+test.describe('Verify articles CRUD operations @crud', () => {
+  test('should not create an article without a logged-in user @GAD-R08-03', async ({
     request,
   }) => {
     // Arrange
@@ -25,7 +25,7 @@ test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
     expect(response.status()).toBe(expectedResponseCode);
   });
 
-  test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
+  test.describe('crud operations', () => {
     let responseArticle: APIResponse;
     let headers: Headers;
     let articleData: ArticlePayload;
@@ -42,7 +42,7 @@ test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
       });
     });
 
-    test('should create an article with logged-in user', async () => {
+    test('should create an article with logged-in user @GAD-R08-03', async () => {
       // Arrange
       const expectedResponseCodePost = 201;
       const actualResponseStatus = responseArticle.status();
@@ -58,13 +58,13 @@ test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
       expect.soft(articleJson.body).toEqual(articleData.body);
     });
 
-    test('should delete an article with logged-in user', async ({
+    test('should delete an article with logged-in user @GAD-R08-05', async ({
       request,
     }) => {
       // await new Promise((resolve) => setTimeout(resolve, 5000));
 
       // Arrange
-      const expectedResponseCodeDelete = 200;
+      const expectedDeletedArticleStatusCode = 200;
       const expectedResponseCodeGet = 404;
       const articleJson = await responseArticle.json();
       const articleId = articleJson.id;
@@ -81,8 +81,8 @@ test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
       const actualResponseStatus = responseArticleDelete.status();
       expect(
         actualResponseStatus,
-        `expect status code ${expectedResponseCodeDelete}, and received ${actualResponseStatus}`,
-      ).toBe(expectedResponseCodeDelete);
+        `expect status code ${expectedDeletedArticleStatusCode}, and received ${actualResponseStatus}`,
+      ).toBe(expectedDeletedArticleStatusCode);
 
       // Assert checked delete article
       const responseArticleGet = await request.get(
@@ -94,14 +94,14 @@ test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
       ).toBe(expectedResponseCodeGet);
     });
 
-    test('should not delete an article with non logged-n user', async ({
+    test('should not delete an article with non logged-n user @GAD-R08-05', async ({
       request,
     }) => {
       // await new Promise((resolve) => setTimeout(resolve, 5000));
 
       // Arrange
       const expectedResponseCodeDelete = 401;
-      const expectedResponseCodeGet = 200;
+      const expectedNotDeletedArticleStatusCode = 200;
       const articleJson = await responseArticle.json();
       const articleId = articleJson.id;
 
@@ -123,8 +123,8 @@ test.describe('Verify articles CRUD operations @crud @GAD-R08-03', () => {
       );
       expect(
         responseArticleGet.status(),
-        `expected status code ${expectedResponseCodeGet}, and received ${responseArticleGet.status()}`,
-      ).toBe(expectedResponseCodeGet);
+        `expected status code ${expectedNotDeletedArticleStatusCode}, and received ${responseArticleGet.status()}`,
+      ).toBe(expectedNotDeletedArticleStatusCode);
     });
   });
 });
