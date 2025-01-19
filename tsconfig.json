@@ -3,11 +3,13 @@
     "target": "es2021",
     "module": "CommonJS",
     "sourceMap": true,
+    "strict": true,
     "baseUrl": ".",
     "paths": {
       "@_pw-config": ["playwright.config.ts"],
       "@_config/*": ["config/*"],
       "@_src/*": ["src/*"]
-    }
+    },
+    "esModuleInterop": true
   }
 }

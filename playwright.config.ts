@@ -1,7 +1,6 @@
 import { BASE_URL } from '@_config/env.config';
 import { defineConfig, devices } from '@playwright/test';
-
-import path = require('path');
+import path from 'path';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
