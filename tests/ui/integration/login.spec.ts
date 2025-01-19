@@ -9,6 +9,7 @@ test.describe('Verify login', () => {
 
     // Act
     const welcomePage = await loginPage.login(testUser1);
+    await welcomePage.waitForPageToLoadUrl();
     const title = await welcomePage.getTitle();
 
     //Assert
