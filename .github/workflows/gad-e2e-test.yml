@@ -48,7 +48,7 @@ jobs:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
         run: |
-          npm run test
+          PLAYWRIGHT_JSON_OUTPUT_NAME=test-results.json npx playwright test --reporter=json
 
       - name: Generate Playwright summary
         uses: daun/playwright-report-summary@v3
