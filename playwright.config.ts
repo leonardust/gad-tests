@@ -17,7 +17,7 @@ export default defineConfig({
   fullyParallel: true,
   retries: 0,
   workers: undefined,
-  reporter: 'html',
+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],
   use: {
     baseURL: BASE_URL,
     actionTimeout: 0,

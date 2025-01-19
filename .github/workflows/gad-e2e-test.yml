@@ -2,9 +2,9 @@ name: e2e Playwright GAD tests
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
   workflow_dispatch:
 
 jobs:
@@ -25,8 +25,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
-          registry-url: "https://npm.pkg.github.com"
+          cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
           cache-dependency-path: '**/package-lock.json'
 
       - name: Install dependencies
@@ -49,3 +49,9 @@ jobs:
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
         run: |
           npm run test
+
+      - name: Generate Playwright summary
+        uses: daun/playwright-report-summary@v3
+        if: always()
+        with:
+          report-file: test-results.json
