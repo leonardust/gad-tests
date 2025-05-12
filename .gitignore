@@ -1,9 +1,9 @@
 node_modules/
 /test-results/
-/playwright-report/
+reports/playwright-report/
 /blob-report/
 /playwright/.cache/
 .env
 tmp/*
 !tmp/.gitkeep
-test-results.json
+test-results/test-results.json

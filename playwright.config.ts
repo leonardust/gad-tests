@@ -17,7 +17,10 @@ export default defineConfig({
   fullyParallel: true,
   retries: 0,
   workers: undefined,
-  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],
+  reporter: [
+    ['html', { open: 'always', outputFolder: 'reports/playwright-report' }],
+    ['json', { outputFile: 'test-results/test-results.json' }],
+  ],
   use: {
     baseURL: BASE_URL,
     actionTimeout: 0,

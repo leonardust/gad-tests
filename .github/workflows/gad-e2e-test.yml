@@ -49,20 +49,19 @@ jobs:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
         run: |
-          PLAYWRIGHT_JSON_OUTPUT_NAME=test-results.json npx playwright test --reporter=json
-
+          npm run test
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-results
+          name: playwright-artifacts
           path: |
-            playwright-report/
+            reports/playwright-report/
           retention-days: 10
 
       - name: Generate Playwright summary
         uses: daun/playwright-report-summary@v3
         if: always()
         with:
-          report-file: test-results.json
+          report-file: test-results/test-results.json
           job-summary: true

@@ -5,7 +5,13 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default [
-  { ignores: ['package-lock.json', 'playwright-report/**', 'test-results/**'] },
+  {
+    ignores: [
+      'package-lock.json',
+      'reports/playwright-report/**',
+      'test-results/test-results/**',
+    ],
+  },
   { files: ['**/*.ts'] },
   { languageOptions: { globals: globals.node } },
   pluginJs.configs.recommended,
