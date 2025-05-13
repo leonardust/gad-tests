@@ -33,7 +33,20 @@ jobs:
         run: |
           npm i
 
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: |
+          echo "PLAYWRIGHT_VERSION=$(npx playwright --version)" >> $GITHUB_ENV
+
+      - name: Cache Playwright binaries
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+
       - name: Install Playwright Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: |
           npx playwright install --with-deps chromium
 
