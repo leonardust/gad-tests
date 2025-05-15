@@ -1,8 +1,8 @@
-import { MainMenuComponent } from '@_src/components/main-menu.component';
-import { ArticlePage } from '@_src/pages/article.page';
-import { BasePage } from '@_src/pages/base.page';
-import { AddArticleView } from '@_src/views/add-article.view';
+import { MainMenuComponent } from '@components/main-menu.component';
+import { ArticlePage } from '@pages/article.page';
+import { BasePage } from '@pages/base.page';
 import { Page } from '@playwright/test';
+import { AddArticleView } from '@views/add-article.view';
 
 export class ArticlesPage extends BasePage {
   url = '/articles.html';

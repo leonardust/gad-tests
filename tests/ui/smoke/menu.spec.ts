@@ -1,4 +1,4 @@
-import { expect, test } from '@_src/fixtures/merge.fixture';
+import { expect, test } from '@fixtures/merge.fixture';
 
 test.describe('Verify main buttons', () => {
   test('comments button navigates to comments page @GAD-R01-03', async ({

@@ -1,6 +1,6 @@
-import { prepareRandomNewArticle } from '@_src/factories/article.factory';
-import { expect, test } from '@_src/fixtures/merge.fixture';
-import { AddArticleModel } from '@_src/models/article.model';
+import { prepareRandomNewArticle } from '@factories/article.factory';
+import { expect, test } from '@fixtures/merge.fixture';
+import { AddArticleModel } from '@models/article.model';
 
 test.describe.configure({ mode: 'serial' });
 test.describe('Create, verify and delete article', () => {

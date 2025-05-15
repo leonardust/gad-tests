@@ -1,6 +1,6 @@
-import { expect, test } from '@_src/fixtures/merge.fixture';
-import { LoginUserModel } from '@_src/models/user.model';
-import { testUser1 } from '@_src/test-data/user.data';
+import { expect, test } from '@fixtures/merge.fixture';
+import { LoginUserModel } from '@models/user.model';
+import { testUser1 } from '@test-data/user.data';
 
 test.describe('Verify login', () => {
   test('login with correct credentials @GAD-R02-01', async ({ loginPage }) => {

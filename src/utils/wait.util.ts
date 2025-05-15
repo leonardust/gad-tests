@@ -1,5 +1,5 @@
-import { RESPONSE_TIMEOUT } from '@_pw-config';
 import { Page, Response } from '@playwright/test';
+import { RESPONSE_TIMEOUT } from '@pw-config';
 
 interface WaitParameters {
   page: Page;

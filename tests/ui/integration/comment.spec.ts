@@ -1,6 +1,6 @@
-import { prepareRandomNewComment } from '@_src/factories/comment.factory';
-import { expect, test } from '@_src/fixtures/merge.fixture';
-import { waitForResponse } from '@_src/utils/wait.util';
+import { prepareRandomNewComment } from '@factories/comment.factory';
+import { expect, test } from '@fixtures/merge.fixture';
+import { waitForResponse } from '@utils/wait.util';
 
 test.describe('Verify comment', () => {
   test('should return created comment @GAD-R07-06 @logged', async ({

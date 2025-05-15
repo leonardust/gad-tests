@@ -1,5 +1,5 @@
-import { AddCommentModel } from '@_src/models/comment.model';
-import { ArticlePage } from '@_src/pages/article.page';
+import { AddCommentModel } from '@models/comment.model';
+import { ArticlePage } from '@pages/article.page';
 import { Page } from '@playwright/test';
 
 export class AddCommentView {

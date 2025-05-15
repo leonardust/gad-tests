@@ -1,4 +1,3 @@
-import { expect, test } from '@_src/fixtures/merge.fixture';
 import {
   ArticlePayload,
   Headers,
@@ -6,6 +5,7 @@ import {
   getAuthHeader,
   prepareArticlePayload,
 } from '@_src/utils/api.util';
+import { expect, test } from '@fixtures/merge.fixture';
 import { APIResponse } from '@playwright/test';
 
 test.describe('Verify articles CRUD operations @crud', () => {

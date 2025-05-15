@@ -1,6 +1,6 @@
-import { STORAGE_STATE } from '@_pw-config';
-import { expect, test as setup } from '@_src/fixtures/merge.fixture';
-import { testUser1 } from '@_src/test-data/user.data';
+import { expect, test as setup } from '@fixtures/merge.fixture';
+import { STORAGE_STATE } from '@pw-config';
+import { testUser1 } from '@test-data/user.data';
 
 setup('login and save session', async ({ loginPage, page }) => {
   // Arrange

@@ -1,9 +1,9 @@
-import { MainMenuComponent } from '@_src/components/main-menu.component';
-import { ArticlesPage } from '@_src/pages/articles.page';
-import { BasePage } from '@_src/pages/base.page';
-import { CommentPage } from '@_src/pages/comment.page';
-import { AddCommentView } from '@_src/views/add-comment.view';
+import { MainMenuComponent } from '@components/main-menu.component';
+import { ArticlesPage } from '@pages/articles.page';
+import { BasePage } from '@pages/base.page';
+import { CommentPage } from '@pages/comment.page';
 import { Locator, Page } from '@playwright/test';
+import { AddCommentView } from '@views/add-comment.view';
 
 interface ArticleComment {
   body: Locator;
@@ -54,3 +54,4 @@ export class ArticlePage extends BasePage {
     return new AddCommentView(this.page);
   }
 }
+export { BasePage };

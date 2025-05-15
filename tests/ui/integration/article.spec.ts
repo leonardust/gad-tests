@@ -1,4 +1,4 @@
-import { expect, test } from '@_src/fixtures/merge.fixture';
+import { expect, test } from '@fixtures/merge.fixture';
 
 test.describe('Verify article', () => {
   test('Non logged user can access created article @GAD-R06-0 @predefined_data', async ({

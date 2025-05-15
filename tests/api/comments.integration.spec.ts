@@ -1,4 +1,3 @@
-import { expect, test } from '@_src/fixtures/merge.fixture';
 import {
   CommentPayload,
   Headers,
@@ -7,6 +6,7 @@ import {
   prepareArticlePayload,
   prepareCommentPayload,
 } from '@_src/utils/api.util';
+import { expect, test } from '@fixtures/merge.fixture';
 import { APIResponse } from '@playwright/test';
 
 test.describe('Verify comments CRUD operations @crud', () => {

@@ -1,7 +1,7 @@
-import { prepareRandomNewArticle } from '@_src/factories/article.factory';
-import { prepareRandomNewComment } from '@_src/factories/comment.factory';
-import { testUser1 } from '@_src/test-data/user.data';
+import { prepareRandomNewArticle } from '@factories/article.factory';
+import { prepareRandomNewComment } from '@factories/comment.factory';
 import { APIRequestContext } from '@playwright/test';
+import { testUser1 } from '@test-data/user.data';
 
 export interface ArticlePayload {
   title: string;

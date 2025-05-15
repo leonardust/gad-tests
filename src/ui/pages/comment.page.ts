@@ -1,8 +1,8 @@
-import { MainMenuComponent } from '@_src/components/main-menu.component';
-import { ArticlePage } from '@_src/pages/article.page';
-import { BasePage } from '@_src/pages/base.page';
-import { EditCommentView } from '@_src/views/edit-comment.view';
+import { MainMenuComponent } from '@components/main-menu.component';
+import { ArticlePage } from '@pages/article.page';
+import { BasePage } from '@pages/base.page';
 import { Page } from '@playwright/test';
+import { EditCommentView } from '@views/edit-comment.view';
 
 export class CommentPage extends BasePage {
   url = '/comment.html';

@@ -6,9 +6,17 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@_pw-config": ["playwright.config.ts"],
-      "@_config/*": ["config/*"],
-      "@_src/*": ["src/*"]
+      "@pw-config": ["playwright.config.ts"],
+      "@config/*": ["config/*"],
+      "@_src/*": ["src/*"],
+      "@pages/*": ["src/ui/pages/*"],
+      "@views/*": ["src/ui/views/*"],
+      "@components/*": ["src/ui/components/*"],
+      "@models/*": ["src/models/*"],
+      "@factories/*": ["src/factories/*"],
+      "@test-data/*": ["src/test-data/*"],
+      "@fixtures/*": ["src/fixtures/*"],
+      "@utils/*": ["src/utils/*"]
     },
     "esModuleInterop": true
   }
