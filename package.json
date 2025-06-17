@@ -7,6 +7,7 @@
     "format": "npx prettier --write .",
     "format:check": "npx prettier . --check \"!**.ts\"",
     "lint": "npx eslint . --max-warnings=0",
+    "ts:check": "tsc --noEmit",
     "test": "npx playwright test",
     "test:headed": "npm run test -- --headed",
     "test:ui-mode": "npm run test -- --ui",
